@@ -60,6 +60,13 @@ Shared UI components are available in src/app/shared/ui (buttons, inputs, form-f
 
 Ocean Professional theme with subtle shadows, rounded corners, gradients, and transitions. Runtime theme tokens are exposed via ThemeService.
 
+- Global tokens and auth shell styles live in `src/styles.scss`. These integrate:
+  - assets/style_guide.md (tokens)
+  - assets/snippets_auth_shell.css (auth split-screen shell)
+  - assets/login_page_design_notes.md (layout and behavior)
+- Colors: primary #2563EB, secondary #F59E0B, error #EF4444, background #f9fafb, surface #ffffff, text #111827.
+- Auth pages use a split-screen layout with a left intro panel and right gradient-backed form card, responsive down to mobile.
+
 ## Testing
 
 Run unit tests:

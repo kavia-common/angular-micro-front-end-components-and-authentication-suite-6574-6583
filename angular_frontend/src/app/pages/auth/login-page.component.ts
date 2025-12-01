@@ -9,29 +9,72 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [UiModule],
   template: `
-    <div style="max-width:420px; margin: 32px auto;">
-      <app-card title="Sign in" ariaLabel="Login form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-          <app-form-field label="Email" [forId]="'email'">
-            <input id="email" type="email" placeholder="you@example.com" aria-label="Email" formControlName="email" />
-          </app-form-field>
+    <main class="auth-shell" aria-label="Authentication">
+      <section class="panel panel--left" aria-label="Welcome information">
+        <div class="left-content">
+          <div class="brand" aria-label="Brand">dish</div>
+          <h1>Welcome to your SBB Management Portal</h1>
+          <p class="subcopy">
+            Manage and monitor millions of CPDs intelligently to improve operational efficiency and enhance customer experience
+          </p>
+          <ul class="meta" aria-label="Highlights">
+            <li>ISO</li>
+            <li>Enterprise-grade</li>
+            <li>24/7 Monitoring</li>
+          </ul>
+        </div>
+      </section>
 
-          <app-form-field label="Password" [forId]="'password'">
-            <input id="password" type="password" placeholder="••••••••" aria-label="Password" formControlName="password" />
-          </app-form-field>
+      <section class="panel panel--right" aria-label="Login panel">
+        <div class="gradient-bg" aria-hidden="true"></div>
 
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-top: 12px;">
-            <a routerLink="/forgot-password">Forgot password?</a>
-            <app-button [disabled]="loading" variant="primary" ariaLabel="Sign in" type="submit">
-              <span *ngIf="!loading">Sign in</span>
-              <app-loader *ngIf="loading"></app-loader>
-            </app-button>
-          </div>
-        </form>
+        <div class="login-card" aria-label="Login form card">
+          <h2>Login</h2>
 
-        <app-alert *ngIf="error" type="error" style="margin-top:12px;">{{ error }}</app-alert>
-      </app-card>
-    </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <app-form-field label="Email / Username" [forId]="'email'">
+              <div class="input">
+                <input
+                  id="email"
+                  type="email"
+                  autocomplete="username"
+                  placeholder="you@example.com"
+                  aria-label="Email or username"
+                  formControlName="email"
+                />
+              </div>
+            </app-form-field>
+
+            <app-form-field label="Password" [forId]="'password'">
+              <div class="input">
+                <input
+                  id="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="••••••••"
+                  aria-label="Password"
+                  formControlName="password"
+                />
+              </div>
+            </app-form-field>
+
+            <div class="form-actions">
+              <a class="link--muted" routerLink="/forgot-password">Forgot password?</a>
+              <button class="btn btn--primary" [disabled]="loading" aria-label="Sign in" type="submit">
+                <span *ngIf="!loading">Sign in</span>
+                <app-loader *ngIf="loading"></app-loader>
+              </button>
+            </div>
+          </form>
+
+          <app-alert *ngIf="error" type="error">{{ error }}</app-alert>
+
+          <button class="btn btn--secondary btn--block" type="button" aria-label="Register (placeholder)" (click)="onRegister()">
+            Register
+          </button>
+        </div>
+      </section>
+    </main>
   `
 })
 export class LoginPageComponent {
@@ -65,5 +108,11 @@ export class LoginPageComponent {
         this.error = 'Login failed.';
       }
     });
+  }
+
+  // PUBLIC_INTERFACE
+  onRegister() {
+    /** Placeholder for future registration route; keeps layout parity with design. */
+    // Could navigate to /register when implemented
   }
 }

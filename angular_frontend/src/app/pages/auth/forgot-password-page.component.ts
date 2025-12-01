@@ -8,25 +8,42 @@ import { AuthService } from '../../core/auth/auth.service';
   standalone: true,
   imports: [UiModule],
   template: `
-    <div style="max-width:420px; margin: 32px auto;">
-      <app-card title="Forgot Password" ariaLabel="Forgot password form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-          <app-form-field label="Email" [forId]="'email'">
-            <input id="email" type="email" placeholder="you@example.com" aria-label="Email" formControlName="email" />
-          </app-form-field>
+    <main class="auth-shell" aria-label="Forgot password">
+      <section class="panel panel--left" aria-label="Support information">
+        <div class="left-content">
+          <div class="brand">dish</div>
+          <h1>Need a password reset?</h1>
+          <p class="subcopy">Enter your email and we'll send you a link to reset your password.</p>
+          <ul class="meta"><li>Secure</li><li>Fast</li></ul>
+        </div>
+      </section>
 
-          <div style="display:flex; align-items:center; justify-content:flex-end; margin-top: 12px;">
-            <app-button [disabled]="loading" variant="primary" ariaLabel="Request reset" type="submit">
-              <span *ngIf="!loading">Request reset</span>
-              <app-loader *ngIf="loading"></app-loader>
-            </app-button>
-          </div>
-        </form>
+      <section class="panel panel--right" aria-label="Reset request panel">
+        <div class="gradient-bg" aria-hidden="true"></div>
 
-        <app-alert *ngIf="message" type="success" style="margin-top:12px;">{{ message }}</app-alert>
-        <app-alert *ngIf="error" type="error" style="margin-top:12px;">{{ error }}</app-alert>
-      </app-card>
-    </div>
+        <div class="login-card" aria-label="Forgot password card">
+          <h2>Forgot Password</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <app-form-field label="Email" [forId]="'email'">
+              <div class="input">
+                <input id="email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email" formControlName="email" />
+              </div>
+            </app-form-field>
+
+            <div class="form-actions" style="justify-content: flex-end;">
+              <button class="btn btn--primary" [disabled]="loading" aria-label="Request reset" type="submit">
+                <span *ngIf="!loading">Request reset</span>
+                <app-loader *ngIf="loading"></app-loader>
+              </button>
+            </div>
+          </form>
+
+          <app-alert *ngIf="message" type="success">{{ message }}</app-alert>
+          <app-alert *ngIf="error" type="error">{{ error }}</app-alert>
+        </div>
+      </section>
+    </main>
   `
 })
 export class ForgotPasswordPageComponent {

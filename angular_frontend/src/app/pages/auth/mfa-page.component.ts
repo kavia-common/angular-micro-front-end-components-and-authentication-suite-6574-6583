@@ -9,24 +9,41 @@ import { AuthService } from '../../core/auth/auth.service';
   standalone: true,
   imports: [UiModule],
   template: `
-    <div style="max-width:420px; margin: 32px auto;">
-      <app-card title="Verify MFA" ariaLabel="MFA verification form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-          <app-form-field label="Code" [forId]="'code'" hint="Use 123456 in mock mode">
-            <input id="code" type="text" placeholder="123456" aria-label="MFA code" formControlName="code" />
-          </app-form-field>
+    <main class="auth-shell" aria-label="MFA">
+      <section class="panel panel--left" aria-label="Welcome information">
+        <div class="left-content">
+          <div class="brand">dish</div>
+          <h1>Secure verification</h1>
+          <p class="subcopy">Enter the 6-digit verification code to continue.</p>
+          <ul class="meta"><li>Time-based codes</li><li>Best practices</li></ul>
+        </div>
+      </section>
 
-          <div style="display:flex; align-items:center; justify-content:flex-end; margin-top: 12px;">
-            <app-button [disabled]="loading" variant="primary" ariaLabel="Verify" type="submit">
-              <span *ngIf="!loading">Verify</span>
-              <app-loader *ngIf="loading"></app-loader>
-            </app-button>
-          </div>
-        </form>
+      <section class="panel panel--right" aria-label="MFA verification panel">
+        <div class="gradient-bg" aria-hidden="true"></div>
 
-        <app-alert *ngIf="error" type="error" style="margin-top:12px;">{{ error }}</app-alert>
-      </app-card>
-    </div>
+        <div class="login-card" aria-label="MFA card">
+          <h2>Verify MFA</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <app-form-field label="Code" [forId]="'code'" hint="Use 123456 in mock mode">
+              <div class="input">
+                <input id="code" type="text" inputmode="numeric" placeholder="123456" aria-label="MFA code" formControlName="code" />
+              </div>
+            </app-form-field>
+
+            <div class="form-actions" style="justify-content: flex-end;">
+              <button class="btn btn--primary" [disabled]="loading" aria-label="Verify" type="submit">
+                <span *ngIf="!loading">Verify</span>
+                <app-loader *ngIf="loading"></app-loader>
+              </button>
+            </div>
+          </form>
+
+          <app-alert *ngIf="error" type="error">{{ error }}</app-alert>
+        </div>
+      </section>
+    </main>
   `
 })
 export class MfaPageComponent {
