@@ -1,0 +1,4 @@
+{
+    "command": "npm start -- --port <port> --host <host>",
+    "working_directory": "/home/kavia/workspace/code-generation/angular-micro-front-end-components-and-authentication-suite-6574-6583/angular_frontend"
+}
