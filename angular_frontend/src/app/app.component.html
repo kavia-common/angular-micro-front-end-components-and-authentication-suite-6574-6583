@@ -1,3 +1,26 @@
-<div class="container">
-  <h1>{{ title }}</h1>
+<div class="container-shell" [class.container-shell--no-sidebar]="!sidebarOpen()">
+  <header class="shell-topnav card" role="banner" aria-label="Top navigation" style="display:flex; align-items:center; justify-content:space-between; padding: 0 16px;">
+    <button class="btn btn-ghost" aria-label="Toggle sidebar" (click)="toggleSidebar()">
+      ☰
+    </button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <strong>{{ title }}</strong>
+    </div>
+  </header>
+
+  <aside class="shell-sidebar card" role="navigation" aria-label="Primary">
+    <nav style="padding: 16px;">
+      <ul style="list-style:none; display:grid; gap:8px; padding:0; margin:0;">
+        <li><a routerLink="/" aria-label="Home">Home</a></li>
+        <li><a routerLink="/login" aria-label="Login">Login</a></li>
+        <li><a routerLink="/mfa" aria-label="MFA">MFA</a></li>
+        <li><a routerLink="/forgot-password" aria-label="Forgot password">Forgot Password</a></li>
+        <li><a routerLink="/reset-password" aria-label="Reset password">Reset Password</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="shell-main">
+    <router-outlet></router-outlet>
+  </main>
 </div>
