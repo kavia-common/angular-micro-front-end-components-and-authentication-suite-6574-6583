@@ -17,7 +17,7 @@ import { AuthService } from '../../core/auth/auth.service';
           </app-form-field>
 
           <div style="display:flex; align-items:center; justify-content:flex-end; margin-top: 12px;">
-            <app-button [disabled]="loading" variant="primary" ariaLabel="Reset password">
+            <app-button [disabled]="loading" variant="primary" ariaLabel="Reset password" type="submit">
               <span *ngIf="!loading">Reset</span>
               <app-loader *ngIf="loading"></app-loader>
             </app-button>

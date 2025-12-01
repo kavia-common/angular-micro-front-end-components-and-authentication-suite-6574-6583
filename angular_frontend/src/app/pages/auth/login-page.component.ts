@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 
           <div style="display:flex; align-items:center; justify-content:space-between; margin-top: 12px;">
             <a routerLink="/forgot-password">Forgot password?</a>
-            <app-button [disabled]="loading" variant="primary" ariaLabel="Sign in">
+            <app-button [disabled]="loading" variant="primary" ariaLabel="Sign in" type="submit">
               <span *ngIf="!loading">Sign in</span>
               <app-loader *ngIf="loading"></app-loader>
             </app-button>

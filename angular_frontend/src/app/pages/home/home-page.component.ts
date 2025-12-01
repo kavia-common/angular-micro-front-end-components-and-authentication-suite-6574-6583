@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { UiModule } from '../../shared/ui/ui.module';
 import { AuthService } from '../../core/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -17,8 +18,10 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class HomePageComponent {
   private auth = inject(AuthService);
+  private router = inject(Router);
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }
